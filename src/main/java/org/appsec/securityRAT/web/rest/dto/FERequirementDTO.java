@@ -6,6 +6,7 @@ import java.util.Set;
 import org.appsec.securityRAT.domain.OptColumnContent;
 import org.appsec.securityRAT.domain.RequirementSkeleton;
 import org.appsec.securityRAT.domain.TagInstance;
+import org.appsec.securityRAT.domain.CollectionInstance;
 
 public class FERequirementDTO {
 
@@ -22,6 +23,8 @@ public class FERequirementDTO {
 	private Set<FEOptionColumnContentDTO> optionColumnContents;
 
 	private Set<Long> tagInstanceIds;
+
+	private Set<FECollectionInstanceDTO> collectionInstances;
 
 	public FERequirementDTO(){
 	}
@@ -43,6 +46,12 @@ public class FERequirementDTO {
 		Set<TagInstance> tagInstances = skeleton.getTagInstances();
 		for (TagInstance tagInstance : tagInstances) {
 			this.tagInstanceIds.add(tagInstance.getId());
+		}
+
+		this.collectionInstances = new HashSet<FECollectionInstanceDTO>();
+		Set<CollectionInstance> collectionInstanceForSkeleton = skeleton.getCollectionInstances();
+		for (CollectionInstance collectionInstance : collectionInstanceForSkeleton) {
+			this.collectionInstances.add(new FECollectionInstanceDTO(collectionInstance));
 		}
 	}
 
@@ -73,5 +82,9 @@ public class FERequirementDTO {
 	public Set<Long> getTagInstanceIds() {
 		return tagInstanceIds;
 	}
+
+        public Set<FECollectionInstanceDTO> getCollectionInstances() {
+                return collectionInstances;
+        }
 
 }
