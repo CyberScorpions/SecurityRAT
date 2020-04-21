@@ -1050,7 +1050,6 @@ angular.module('sdlctoolApp')
                         statusColumns: angular.copy(statusColumnsValues, []),
                         selected: false
                     });
-
                     $scope.filterCategory.push({
                         id: requirementCategory.id,
                         showOrder: requirementCategory.showOrder,
@@ -1298,6 +1297,7 @@ angular.module('sdlctoolApp')
                         order: requirement.showOrder,
                         tagInstances: requirement.tagInstanceIds,
                         optionColumns: values,
+			collectionInstances: requirement.collectionInstances,
                         tickets: [],
                         // linkStatus : {enableTooltip: true, link:true},
                         linkStatus: {
@@ -2285,7 +2285,6 @@ angular.module('sdlctoolApp')
         };
 
         $scope.buildYAMLFile = function () {
-
             var objectToExport = {
                 name: $scope.systemSettings.name,
                 ticket: $scope.ticket,

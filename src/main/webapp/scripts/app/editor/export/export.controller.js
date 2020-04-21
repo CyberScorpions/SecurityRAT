@@ -42,7 +42,6 @@ angular.module('sdlctoolApp')
                 authenticating: false,
             });
             $scope.exported = sharedProperties.getProperty();
-
             if ($scope.selection.createTickets && angular.isDefined($scope.exported.defaultJIRAHost)
                 && $scope.exported.defaultJIRAHost.trim() !== '') {
                 $scope.exportProperty.urlPlaceholder = 'e.g. YOURPROJECT or https://your-jira.url/browse/YOURPROJECT';
@@ -546,7 +545,7 @@ angular.module('sdlctoolApp')
 
         $scope.sendAttachment = function () {
             var file = $scope.buildYAMLFile();
-            var linksObject = {};
+	    var linksObject = {};
             $scope.ticketAuthentication = {};
             //          console.log(file);
             $scope.exported.ticket.apiUrl = $scope.apiUrl;
@@ -770,7 +769,7 @@ angular.module('sdlctoolApp')
             } else if ($scope.selection.file) {
                 if ($scope.extension === 'yaml') {
                     var file = $scope.buildYAMLFile();
-                    var mime = 'data:application/x-yaml;charset=utf-8,';
+		    var mime = 'data:application/x-yaml;charset=utf-8,';
                     var ext = '.yml';
                     var doc = jsyaml.safeDump(file);
                     var a = document.createElement('a');
@@ -935,14 +934,12 @@ angular.module('sdlctoolApp')
                 $scope.exported.ticket.url = $scope.ticketURL;
                 $scope.exported.ticket.key = $scope.apiUrl.ticketKey[0];
             }
-
             // copy the exported object
             var copyOfExport = angular.copy($scope.exported);
             angular.forEach(copyOfExport.requirements, function (requirement) {
 
                 requirement.tickets = $scope.getTicketValue(requirement);
             });
-
             return Helper.buildYAMLFile(copyOfExport);
         };
     });
